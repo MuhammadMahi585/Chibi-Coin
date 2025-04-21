@@ -16,6 +16,12 @@ const convertCurrency = (amount, fromCurrency, toCurrency) => {
 };
 
 export const addTransaction = (data, setData, newTransaction) => {
+  const amount = parseFloat(newTransaction.amount);
+  if (isNaN(amount)) {
+    console.error("Invalid transaction amount:", newTransaction.amount);
+    return;
+  }
+
   const transactionDate = new Date(newTransaction.date);
   const currentDate = new Date();
 
@@ -28,6 +34,7 @@ export const addTransaction = (data, setData, newTransaction) => {
         {
           id: Date.now(), // Generate unique ID
           ...newTransaction,
+          amount,
         },
       ],
     }));
@@ -40,6 +47,7 @@ export const addTransaction = (data, setData, newTransaction) => {
         {
           id: Date.now(), // Generate unique ID
           ...newTransaction,
+          amount,
         },
       ],
     }));
@@ -47,10 +55,16 @@ export const addTransaction = (data, setData, newTransaction) => {
 };
 
 export const updateRecentTransaction = (data, setData, updatedTransaction) => {
+  const amount = parseFloat(updatedTransaction.amount);
+  if (isNaN(amount)) {
+    console.error("Invalid transaction amount:", updatedTransaction.amount);
+    return;
+  }
+
   setData((prevData) => ({
     ...prevData,
     recentTransactions: prevData.recentTransactions.map((tx) =>
-      tx.id === updatedTransaction.id ? updatedTransaction : tx
+      tx.id === updatedTransaction.id ? { ...updatedTransaction, amount } : tx
     ),
   }));
 };
@@ -69,10 +83,16 @@ export const updateUpcomingTransaction = (
   setData,
   updatedTransaction
 ) => {
+  const amount = parseFloat(updatedTransaction.amount);
+  if (isNaN(amount)) {
+    console.error("Invalid transaction amount:", updatedTransaction.amount);
+    return;
+  }
+
   setData((prevData) => ({
     ...prevData,
     upcomingTransactions: prevData.upcomingTransactions.map((tx) =>
-      tx.id === updatedTransaction.id ? updatedTransaction : tx
+      tx.id === updatedTransaction.id ? { ...updatedTransaction, amount } : tx
     ),
   }));
 };
@@ -96,8 +116,8 @@ export const calculateBalance = (data, setData) => {
       userCurrency
     );
     return transaction.type === "added"
-      ? acc + amountInUserCurrency
-      : acc - amountInUserCurrency;
+      ? acc + (isNaN(amountInUserCurrency) ? 0 : amountInUserCurrency)
+      : acc - (isNaN(amountInUserCurrency) ? 0 : amountInUserCurrency);
   }, 0);
 
   const currentMonth = new Date().getMonth();
@@ -113,7 +133,19 @@ export const calculateBalance = (data, setData) => {
     .reduce(
       (acc, transaction) =>
         acc +
-        convertCurrency(transaction.amount, transaction.currency, userCurrency),
+        (isNaN(
+          convertCurrency(
+            transaction.amount,
+            transaction.currency,
+            userCurrency
+          )
+        )
+          ? 0
+          : convertCurrency(
+              transaction.amount,
+              transaction.currency,
+              userCurrency
+            )),
       0
     );
 
@@ -127,7 +159,19 @@ export const calculateBalance = (data, setData) => {
     .reduce(
       (acc, transaction) =>
         acc +
-        convertCurrency(transaction.amount, transaction.currency, userCurrency),
+        (isNaN(
+          convertCurrency(
+            transaction.amount,
+            transaction.currency,
+            userCurrency
+          )
+        )
+          ? 0
+          : convertCurrency(
+              transaction.amount,
+              transaction.currency,
+              userCurrency
+            )),
       0
     );
 

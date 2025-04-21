@@ -93,6 +93,31 @@ export const DataProvider = ({ children }) => {
     calculateBalance(data, setData);
   }, [data.recentTransactions, data.user.currency]);
 
+  // Recalculate budget whenever recentTransactions change
+  useEffect(() => {
+    const recalculateBudgets = () => {
+      setData((prevData) => {
+        const updatedBudgets = prevData.budget.map((budget) => {
+          const { category, startDate, endDate } = budget;
+          const transactions = prevData.recentTransactions.filter(
+            (transaction) =>
+              transaction.category === category &&
+              new Date(transaction.date) >= new Date(startDate) &&
+              new Date(transaction.date) <= new Date(endDate)
+          );
+          const amount = transactions.reduce(
+            (sum, transaction) => sum + transaction.amount,
+            0
+          );
+          return { ...budget, amount };
+        });
+        return { ...prevData, budget: updatedBudgets };
+      });
+    };
+
+    recalculateBudgets();
+  }, [data.recentTransactions]);
+
   const clearStorage = async () => {
     try {
       await AsyncStorage.clear();
