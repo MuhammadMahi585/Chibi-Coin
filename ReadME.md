@@ -16,6 +16,14 @@ Chibi Coin an Expense Tracker Application built for a project with the following
 
 The application currently lacks complete backend with notification module just hardcoded. The budget module has data type conversion that renders it useless.
 
+## APK
+
+https://drive.google.com/drive/folders/1potCprBms0YUbV9mBDkqdbyzlo167yuZ?usp=drive_link
+
+### QR APK
+
+![QR Screenshot](./assets/QR.png "QR")
+
 ## How to Start
 
 ```bash
