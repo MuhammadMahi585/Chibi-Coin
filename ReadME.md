@@ -48,37 +48,37 @@ npm start
 
 ### Login
 
-![Login Screenshot](./assets/login.png "Login")
+![Login Screenshot](./assets/login.jpg "Login")
 
 ### Homepage
 
-![Homepage Screenshot](./assets/home.png "Homepage")
+![Homepage Screenshot](./assets/home.jpg "Homepage")
 
 ### Goals
 
-![Goals Screenshot](./assets/goals.png "Goals")
+![Goals Screenshot](./assets/goals.jpg "Goals")
 
 ### Profile
 
-![Profile Screenshot](./assets/profile.png "Profile")
+![Profile Screenshot](./assets/profile.jpg "Profile")
 
 ### Notifications
 
-![Notifications Screenshot](./assets/notifications.png "Notifications")
+![Notifications Screenshot](./assets/notifications.jpg "Notifications")
 
 ### Transaction Details
 
-![Transaction Details Screenshot](./assets/transDetails.png "Transaction Details")
+![Transaction Details Screenshot](./assets/transDetails.jpg "Transaction Details")
 
 ### Create Transactions
 
-![Create Transactions Screenshot](./assets/createTrans1.png "Create Transactions")
-![Create Transactions Screenshot](./assets/createTrans2.png "Create Transactions")
+![Create Transactions Screenshot](./assets/createTrans1.jpg "Create Transactions")
+![Create Transactions Screenshot](./assets/createTrans2.jpg "Create Transactions")
 
 ### Create Goal
 
-![Create Goal Screenshot](./assets/createGoal.png "Create Goal")
+![Create Goal Screenshot](./assets/createGoal.jpg "Create Goal")
 
 ### Edit Goal
 
-![Edit Goal Screenshot](./assets/editGoal.png "Edit Goal")
+![Edit Goal Screenshot](./assets/editGoal.jpg "Edit Goal")
